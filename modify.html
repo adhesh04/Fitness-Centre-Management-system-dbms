@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/modify.css" />
+    <title>Modify Fitness Center Data</title>
+    <style>
+      .home-btn {
+        position: absolute;
+        top: 20px;
+        left: 10px;
+      }
+      .logout-btn {
+        position: absolute;
+        top: 20px;
+        right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="home-btn" onclick="window.location.href = 'main.html'">
+      Home
+    </button>
+    <button class="logout-btn" onclick="window.location.href = 'index.html'">
+      Logout
+    </button>
+    <div class="wrapper">
+      <h2>Options</h2>
+      <div class="form-wrapper">
+        <button type="button" onclick="displayData()">Display</button>
+        <button type="button" onclick="updateData()">Update</button>
+        <button type="button" onclick="deleteData()">Delete</button>
+        <button type="button" onclick="clearData()">Clear</button>
+      </div>
+      <div id="data-box" class="data-box"></div>
+    </div>
+
+    <script>
+      function displayData() {
+        fetch("/get_data")
+          .then((response) => response.json())
+          .then((data) => {
+            let html = "";
+            data.forEach((row) => {
+              html += `<div class="data-entry">`;
+              html += `<p>Member ID: ${row[0]}</p>`;
+              html += `<p>First Name: ${row[1]}</p>`;
+              html += `<p>Last Name: ${row[2]}</p>`;
+              html += `<p>Date of Birth: ${row[3]}</p>`;
+              html += `<p>Age: ${row[4]}</p>`;
+              html += `<p>Gender: ${row[5]}</p>`;
+              html += `<p>Address: ${row[6]}</p>`;
+              html += `<p>Mobile: ${row[7]}</p>`;
+              html += `<p>Membership Type: ${row[8]}</p>`;
+              html += `</div>`;
+            });
+            document.getElementById("data-box").innerHTML = html;
+
+            // Once data is displayed, then clear it
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function clearData() {
+        fetch("/clear_data")
+          .then((response) => response.json())
+          .then(() => {
+            document.getElementById("data-box").innerHTML = "";
+            alert("All data cleared successfully!");
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function updateData() {
+        // Get the row number (member ID)
+        const id = parseInt(prompt("Enter the member ID (row number):"));
+
+        if (!id || isNaN(id)) {
+          alert("Invalid member ID. Please enter a valid number.");
+          return;
+        }
+
+        // Prompt the user to select the column to update
+        const column = prompt("Enter the column name to update:");
+
+        if (!column) {
+          alert("Column name cannot be empty.");
+          return;
+        }
+
+        // Prompt the user to enter the new value
+        const newValue = prompt(`Enter the new value for ${column}:`);
+
+        if (!newValue) {
+          alert("New value cannot be empty.");
+          return;
+        }
+
+        // Prepare data object
+        const data = {
+          id: id,
+          column: column,
+          newValue: newValue,
+        };
+
+        // Send PUT request to update data
+        fetch(`/update_data/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            if (result.message) {
+              alert(result.message);
+              displayData(); // Refresh data after update
+            } else {
+              alert("Failed to update data!");
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+      function deleteData() {
+        fetch("/delete_data")
+          .then((response) => response.json())
+          .then((result) => {
+            if (result.success) {
+              alert("data deleted successfully!");
+              displayData(); // Refresh data after deletion
+            } else {
+              alert("Failed to delete data!");
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+    </script>
+  </body>
+</html>

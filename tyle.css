@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #000;
+}
+/* .background-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: url('/assets/dwayne1.jpg') center center/cover;
+  filter: brightness(30%);
+} */
+.wrapper {
+  position: relative;
+  width: 800px; /* Increased width for better spacing */
+  height: fit-content;
+  background: #000;
+  box-shadow: 0 0 50px #0ef;
+  border-radius: 20px;
+  padding: 40px;
+  overflow: hidden;
+}
+
+.wrapper:hover {
+  animation: animate 1s linear infinite;
+}
+
+@keyframes animate {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.form-wrapper {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to next line */
+  justify-content: space-between; /* Distributes items evenly */
+  width: 100%;
+  transition: 1s ease-in-out;
+}
+
+.wrapper.active .form-wrapper.sign-in {
+  transform: translateY(-450px);
+}
+
+.wrapper .form-wrapper.sign-up {
+  position: absolute;
+  top: 450px;
+  left: 0;
+}
+
+.wrapper.active .form-wrapper.sign-up {
+  transform: translateY(-450px);
+}
+
+h2 {
+  padding-bottom: 30px;
+  font-size: 30px;
+  color: #fff;
+  text-align: center;
+}
+
+p {
+  padding-bottom: 30px;
+  font-size: 30px;
+  color: #fff;
+  text-align: center;
+}
+
+.input-group1 {
+  position: relative;
+  margin-bottom: 30px;
+  width: 50%; /* Two input groups per row */
+  float: left; /* Position to the left */
+  box-sizing: border-box; /* Ensure border and padding are included in the width */
+  padding-right: 20px; /* Add right padding for spacing between input groups */
+}
+
+.input-group2 {
+  position: relative;
+  margin-bottom: 30px;
+  width: 50%; /* Two input groups per row */
+  float: right; /* Position to the right */
+  box-sizing: border-box; /* Ensure border and padding are included in the width */
+  padding-right: 20px; /* Add left padding for spacing between input groups */
+}
+
+.input-group1 label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.input-group2 label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.input-group1 input,
+.input-group1 select {
+  width: calc(100% - 10px); /* Adjust width for proper spacing */
+  height: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 0 5px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  outline: none;
+}
+
+.input-group2 input,
+.input-group2 select {
+  width: calc(100% - 10px); /* Adjust width for proper spacing */
+  height: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 0 5px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  outline: none;
+}
+
+.input-group1 input:focus ~ label,
+.input-group1 input:valid ~ label {
+  top: -5px;
+}
+
+.input-group2 input:focus ~ label,
+.input-group2 input:valid ~ label {
+  top: -5px;
+}
+
+.remember {
+  margin: -5px 0 15px 5px;
+}
+
+.remember label {
+  color: #fff;
+  font-size: 14px;
+}
+
+.remember label input {
+  accent-color: #0ef;
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+  height: 60px;
+  background: #0ef;
+  box-shadow: 0 0 10px #0ef;
+  font-size: 16px;
+  color: #000;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+}
+
+.signUp-link {
+  font-size: 14px;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.signUp-link p {
+  color: #fff;
+}
+
+.signUp-link p a {
+  color: #0ef;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signUp-link p a:hover {
+  text-decoration: underline;
+}

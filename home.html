@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program Registration</title>
+    <link rel="stylesheet" type="text/css" href="/static/tyle.css" />
+    <style>
+      .top-left-button {
+        position: absolute;
+        top: 20px; /* Adjusted top margin */
+        left: 20px;
+      }
+
+      .top-right-button {
+        position: absolute;
+        top: 20px; /* Adjusted top margin */
+        right: 20px;
+      }
+
+      .top-left-button,
+      .top-right-button {
+        max-width: 150px; /* Adjust max-width as needed */
+      }
+    </style>
+  </head>
+  <body>
+    <button class="top-left-button" onclick="location.href='main.html'">
+      Home
+    </button>
+
+    <button class="top-right-button" onclick="location.href='index.html'">
+      Logout
+    </button>
+
+    <div class="wrapper">
+      <form id="registrationForm" action="/register" method="post">
+        <h2>Program Registration</h2>
+        <div class="input-group1">
+          <input type="text" name="firstName" required />
+          <label for="">First Name</label>
+        </div>
+        <div class="input-group1">
+          <input type="text" name="lastName" required />
+          <label for="">Last Name</label>
+        </div>
+        <div class="input-group1">
+          <input type="text" name="dateOfBirth" required />
+          <label for="">Date of Birth</label>
+        </div>
+        <div class="input-group1">
+          <input type="text" name="age" required />
+          <label for="">Age</label>
+        </div>
+        <div class="input-group1">
+          <input type="text" name="gender" required />
+          <label for="">Gender</label>
+        </div>
+        <div class="input-group1">
+          <input type="text" name="address" required />
+          <label for="">Address</label>
+        </div>
+        <div class="input-group1">
+          <input type="text" name="mobile" required />
+          <label for="">Mobile</label>
+        </div>
+        <div class="input-group2">
+          <label for="membershipType"></label>
+          <select id="membershipType" name="membershipType" required>
+            <option value="basic">Basic</option>
+            <option value="premium">Premium</option>
+            <option value="vip">VIP</option>
+          </select>
+        </div>
+        <div class="input-group2">
+          <button type="submit">Register</button>
+        </div>
+      </form>
+    </div>
+
+    <script src="suc.js"></script>
+  </body>
+</html>
